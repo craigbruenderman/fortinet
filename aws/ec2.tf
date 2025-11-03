@@ -90,11 +90,23 @@ data "cloudinit_config" "config" {
   }
 }
 
+locals {
+  instance_config = jsonencode({
+    config = templatefile("${var.bootstrap-fgtvm}", {
+      adminsport = var.adminsport
+      }
+    ),
+    license = file("${var.license}")
+  }
+  )
+}
+
 resource "aws_instance" "fgtvm" {
   ami           = "ami-0d8ab3309f7946a19"
   instance_type = var.size
   key_name      = var.keyname
-  user_data     = data.cloudinit_config.config.rendered
+#  user_data     = data.cloudinit_config.config.rendered
+  user_data     = local.instance_config
 
   root_block_device {
     volume_type = "gp2"

@@ -1,0 +1,38 @@
+---
+- name: Change admin settings
+  hosts: FG-50G-WIFI
+
+  tasks:
+    - name: Display api token
+      debug:
+        var: ansible_httpapi_session_key
+
+    - name: Set admin settings
+      fortios_system_global:
+        vdom: "root"
+        system_global:
+          admin_console_timeout: "0"
+          admintimeout: "60"
+          timezone: "US/Eastern"
+
+    #- name: Configure HA
+      #fortios_system_ha:
+        #vdom: "root"
+        #system_ha:
+          #group_name: "HA"
+          #mode: "active-passive"
+          #password: "FG123!"
+          #session_pickup: "enable"
+          #sync_config: "enable"
+          #override: "enable"
+          #sync_interface: "port1"
+
+    - name: Configure NTP
+      fortios_system_ntp:
+        vdom: "root"
+        system_ntp:
+          ntpserver:
+          - ip: "0.pool.ntp.org"
+            key: "1"
+            keyid: "1"
+            enable: "enable"

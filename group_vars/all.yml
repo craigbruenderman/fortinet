@@ -4,4 +4,4 @@ ansible_connection: "httpapi"
 ansible_httpapi_use_ssl: True
 ansible_httpapi_port: 443
 ansible_httpapi_validate_certs: False
-ansible_httpapi_session_key: {"access_token":"75zd1p9Nn48y05j3NcmN43np1nsx60"}
+ansible_httpapi_session_key: {"access_token":""}

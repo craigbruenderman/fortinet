@@ -78,9 +78,12 @@ data "cloudinit_config" "config" {
   part {
     filename     = "config"
     content_type = "text/x-shellscript"
-    content = templatefile("${var.bootstrap-fgtvm}", {
-      adminsport = var.adminsport
-    })
+    content = templatefile(
+      "${var.bootstrap-fgtvm}",
+      {
+       adminsport = var.adminsport
+      }
+    )
   }
 
   part {

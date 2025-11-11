@@ -9,7 +9,3 @@ output "Username" {
 output "Password" {
   value = aws_instance.fgtvm.id
 }
-
-output "user_data" {
-  value = data.cloudinit_config.config.rendered
-}
